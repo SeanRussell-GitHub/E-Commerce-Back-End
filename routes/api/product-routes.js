@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   try {
     const allProducts = await Product.findAll({
       // JOIN with Products    (, using the Tag through table)
-      include: [{ model: Category }, { model: Tag }],
+      include: [{ model: Category }],
     });
     if (!allProducts) {
       res.status(404).json({ message: 'No product found with this id!' });
@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
       // JOIN with Products    (, using the Tag through table)
-      include: [{ model: Category }, { model: Tag }]
+      include: [{ model: Category }]
     });
     if (!productData) {
       res.status(404).json({ message: 'No product found with this id!' });
